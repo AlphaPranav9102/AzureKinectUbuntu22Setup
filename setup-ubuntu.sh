@@ -5,14 +5,6 @@
 
 # Warning! This will override your sources.list file!!
 
-# Copy off old sources.list file
-cp /etc/apt/sources.list /etc/apt/sources.list.old
-echo "Backed up /etc/apt/sources.list to /etc/apt/sources.list.old"
-
-# Copy over the new file
-cp sources.list /etc/apt/sources.list
-echo "Overwrote /etc/apt/sources.list with sources.list"
-
 apt-get update
 
 apt-get install wget -y
