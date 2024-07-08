@@ -21,3 +21,13 @@ CMD ["/init-udev.sh"]
 
 # Use the udev rule to give access to USB devices
 COPY 99-usb.rules /etc/udev/rules.d/99-usb.rules
+
+COPY setup-ubuntu.sh /home/setup-ubuntu.sh
+RUN ./home/setup-ubuntu.sh ${ARCH}
+
+RUN cd home
+RUN git clone https://github.com/microsoft/Azure-Kinect-Sensor-SDK.git
+RUN cd Azure-Kinect-Sensor-SDK
+RUN mkdir build && cd build
+RUN cmake .. -GNinja -DCMAKE_BUILD_TYPE=Debug
+RUN ninja
