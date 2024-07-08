@@ -1,0 +1,2 @@
+# Example rule to give all users access to USB devices
+SUBSYSTEM=="usb", MODE="0666"
