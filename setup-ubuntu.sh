@@ -10,12 +10,10 @@ apt-get update
 apt-get install wget -y
 
 # Add Public microsoft repo keys to the image
-wget -q https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb
+wget -q https://packages.microsoft.com/config/ubuntu/18.04/multiarch/packages-microsoft-prod.deb
 dpkg -i packages-microsoft-prod.deb
 
-if [ "$1" = "arm64" ]; then
-    arch="arm64"
-fi
+arch="arm64"
 
 echo "Setting up for building $arch binaries"
 
@@ -25,8 +23,6 @@ dpkg --add-architecture arm64
 apt-get update
 
 packages=(\
-    gcc-aarch64-linux-gnu \
-    g++-aarch64-linux-gnu \
     file \
     dpkg-dev \
     qemu \
@@ -43,7 +39,6 @@ packages=(\
     git-lfs \
     nasm \
     cmake \
-    powershell \
     libgl1-mesa-dev:$arch \
     libsoundio-dev:$arch \
     libjpeg-dev:$arch \
